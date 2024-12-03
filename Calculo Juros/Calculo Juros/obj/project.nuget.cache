@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "pVzp4dEymYrUYGek1fwAI/2Bles0tFueD09QVuT/i+1HRYdT2ZGTj6BDsD7GEjm/wYzrmWvMfvi8Bq0AwJI7mg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Thales\\source\\repos\\Calculo Juros\\Calculo Juros\\Calculo Juros.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Thales\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.29\\microsoft.windowsdesktop.app.ref.6.0.29.nupkg.sha512",
+    "C:\\Users\\Thales\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.29\\microsoft.netcore.app.ref.6.0.29.nupkg.sha512",
+    "C:\\Users\\Thales\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.29\\microsoft.aspnetcore.app.ref.6.0.29.nupkg.sha512",
+    "C:\\Users\\Thales\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.29\\microsoft.netcore.app.host.win-x64.6.0.29.nupkg.sha512"
+  ],
+  "logs": []
+}

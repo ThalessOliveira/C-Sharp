@@ -1,0 +1,18 @@
+C:\Users\Thales\source\repos\Calculo Juros\Calculo Juros\bin\Debug\net6.0-windows\Calculo Juros.exe
+C:\Users\Thales\source\repos\Calculo Juros\Calculo Juros\bin\Debug\net6.0-windows\Calculo Juros.deps.json
+C:\Users\Thales\source\repos\Calculo Juros\Calculo Juros\bin\Debug\net6.0-windows\Calculo Juros.runtimeconfig.json
+C:\Users\Thales\source\repos\Calculo Juros\Calculo Juros\bin\Debug\net6.0-windows\Calculo Juros.dll
+C:\Users\Thales\source\repos\Calculo Juros\Calculo Juros\bin\Debug\net6.0-windows\Calculo Juros.pdb
+C:\Users\Thales\source\repos\Calculo Juros\Calculo Juros\obj\Debug\net6.0-windows\Calculo_Juros.frmCalcJuros.resources
+C:\Users\Thales\source\repos\Calculo Juros\Calculo Juros\obj\Debug\net6.0-windows\Calculo Juros.csproj.GenerateResource.cache
+C:\Users\Thales\source\repos\Calculo Juros\Calculo Juros\obj\Debug\net6.0-windows\Calculo Juros.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Thales\source\repos\Calculo Juros\Calculo Juros\obj\Debug\net6.0-windows\Calculo Juros.AssemblyInfoInputs.cache
+C:\Users\Thales\source\repos\Calculo Juros\Calculo Juros\obj\Debug\net6.0-windows\Calculo Juros.AssemblyInfo.cs
+C:\Users\Thales\source\repos\Calculo Juros\Calculo Juros\obj\Debug\net6.0-windows\Calculo Juros.csproj.CoreCompileInputs.cache
+C:\Users\Thales\source\repos\Calculo Juros\Calculo Juros\obj\Debug\net6.0-windows\Calculo Juros.dll
+C:\Users\Thales\source\repos\Calculo Juros\Calculo Juros\obj\Debug\net6.0-windows\refint\Calculo Juros.dll
+C:\Users\Thales\source\repos\Calculo Juros\Calculo Juros\obj\Debug\net6.0-windows\Calculo Juros.pdb
+C:\Users\Thales\source\repos\Calculo Juros\Calculo Juros\obj\Debug\net6.0-windows\Calculo Juros.genruntimeconfig.cache
+C:\Users\Thales\source\repos\Calculo Juros\Calculo Juros\obj\Debug\net6.0-windows\ref\Calculo Juros.dll
+C:\Users\Thales\source\repos\Calculo Juros\Calculo Juros\obj\Debug\net6.0-windows\Calculo_Juros.frmMessageBox.resources
+C:\Users\Thales\source\repos\Calculo Juros\Calculo Juros\obj\Debug\net6.0-windows\Calculo_Juros.frmMsgBoxCampos.resources
