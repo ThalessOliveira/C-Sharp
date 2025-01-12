@@ -52,5 +52,10 @@ namespace WinFormsApp1
         {
             loadForm(new Home());
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            loadForm(new More());
+        }
     }
 }

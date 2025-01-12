@@ -16,5 +16,26 @@ namespace WinFormsApp1
         {
             InitializeComponent();
         }
+
+        private void Ping_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void trkPing_Scroll(object sender, EventArgs e)
+        {
+            lbl_ping.Text = trkPing.Value.ToString();
+        }
+
+        private void trkMtu_Scroll(object sender, EventArgs e)
+        {
+            lblMtu.Text = trkMtu.Value.ToString();
+        }
+
+        private void btnDefaultMtu_Click(object sender, EventArgs e)
+        {
+            lblMtu.Text = 1500.ToString();
+            trkMtu.Value = 1500;
+        }
     }
 }

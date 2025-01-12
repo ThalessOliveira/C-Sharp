@@ -35,10 +35,12 @@
             btnPing = new Button();
             btnFps = new Button();
             panelheader = new Panel();
+            label1 = new Label();
             btnHome = new Button();
             button5 = new Button();
             button4 = new Button();
             mainpanel = new Panel();
+            button1 = new Button();
             panelside.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelheader.SuspendLayout();
@@ -47,6 +49,7 @@
             // panelside
             // 
             panelside.BackColor = Color.FromArgb(40, 40, 40);
+            panelside.Controls.Add(button1);
             panelside.Controls.Add(pictureBox1);
             panelside.Controls.Add(btnOther);
             panelside.Controls.Add(btnPing);
@@ -77,7 +80,7 @@
             btnOther.Name = "btnOther";
             btnOther.Size = new Size(200, 60);
             btnOther.TabIndex = 2;
-            btnOther.Text = "Other";
+            btnOther.Text = "Game";
             btnOther.UseVisualStyleBackColor = true;
             btnOther.Click += btnOther_Click;
             // 
@@ -112,6 +115,7 @@
             // panelheader
             // 
             panelheader.BackColor = Color.FromArgb(40, 40, 40);
+            panelheader.Controls.Add(label1);
             panelheader.Controls.Add(btnHome);
             panelheader.Controls.Add(button5);
             panelheader.Controls.Add(button4);
@@ -120,6 +124,17 @@
             panelheader.Name = "panelheader";
             panelheader.Size = new Size(800, 30);
             panelheader.TabIndex = 1;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(36, 4);
+            label1.Name = "label1";
+            label1.Size = new Size(211, 23);
+            label1.TabIndex = 7;
+            label1.Text = "BeeBoost FREE Version";
             // 
             // btnHome
             // 
@@ -175,6 +190,20 @@
             mainpanel.Size = new Size(600, 420);
             mainpanel.TabIndex = 2;
             // 
+            // button1
+            // 
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(137, 384);
+            button1.Name = "button1";
+            button1.Size = new Size(63, 36);
+            button1.TabIndex = 4;
+            button1.Text = "More";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -191,6 +220,7 @@
             panelside.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panelheader.ResumeLayout(false);
+            panelheader.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -206,5 +236,7 @@
         private Button button4;
         private Button button5;
         private Button btnHome;
+        private Label label1;
+        private Button button1;
     }
 }

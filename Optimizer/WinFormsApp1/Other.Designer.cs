@@ -29,18 +29,30 @@
         private void InitializeComponent()
         {
             label3 = new Label();
+            label1 = new Label();
             SuspendLayout();
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold);
+            label3.Font = new Font("Century Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(264, 194);
+            label3.Location = new Point(65, 62);
             label3.Name = "label3";
-            label3.Size = new Size(68, 23);
+            label3.Size = new Size(311, 32);
             label3.TabIndex = 4;
-            label3.Text = "OTHER";
+            label3.Text = "GET BeeBoost Premium";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Century Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(65, 124);
+            label1.Name = "label1";
+            label1.Size = new Size(411, 32);
+            label1.TabIndex = 7;
+            label1.Text = "https://discord.gg/ZWWHVYaB";
             // 
             // Other
             // 
@@ -48,6 +60,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(60, 60, 60);
             ClientSize = new Size(600, 420);
+            Controls.Add(label1);
             Controls.Add(label3);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Other";
@@ -60,5 +73,6 @@
         #endregion
 
         private Label label3;
+        private Label label1;
     }
 }
