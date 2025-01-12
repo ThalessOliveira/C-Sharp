@@ -5,6 +5,7 @@ namespace WinFormsApp1
         public Main()
         {
             InitializeComponent();
+            loadForm(new Home());
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -12,24 +13,24 @@ namespace WinFormsApp1
             Application.Exit();
         }
 
-        private void button5_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
         public void loadForm(object Form)
         {
             if (this.mainpanel.Controls.Count > 0)
-            {
-                this.mainpanel.Controls.RemoveAt(0);
-                Form f = Form as Form;
-                f.TopLevel = false;
-                f.Dock = DockStyle.Fill;
-                this.mainpanel.Controls.Add(f);
-                this.mainpanel.Tag = f;
-                f.Show();
-            }
 
+                this.mainpanel.Controls.RemoveAt(0);
+            Form f = Form as Form;
+            f.TopLevel = false;
+            f.Dock = DockStyle.Fill;
+            this.mainpanel.Controls.Add(f);
+            this.mainpanel.Tag = f;
+            f.Show();
+
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
 
         private void btnFps_Click(object sender, EventArgs e)
@@ -49,7 +50,7 @@ namespace WinFormsApp1
 
         private void btnHome_Click(object sender, EventArgs e)
         {
-            loadForm(new Main());
+            loadForm(new Home());
         }
     }
 }

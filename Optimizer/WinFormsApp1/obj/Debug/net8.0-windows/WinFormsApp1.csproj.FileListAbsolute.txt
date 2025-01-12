@@ -18,3 +18,4 @@ C:\Users\Thales\source\repos\Optimizer\WinFormsApp1\obj\Debug\net8.0-windows\ref
 C:\Users\Thales\source\repos\Optimizer\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.Fps.resources
 C:\Users\Thales\source\repos\Optimizer\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.Other.resources
 C:\Users\Thales\source\repos\Optimizer\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.Ping.resources
+C:\Users\Thales\source\repos\Optimizer\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.Home.resources
