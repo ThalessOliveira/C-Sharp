@@ -87,6 +87,7 @@
             btnApply.TabIndex = 9;
             btnApply.Text = "Apply Settings";
             btnApply.UseVisualStyleBackColor = true;
+            btnApply.Click += btnApply_Click;
             // 
             // chkboxTemporaryFiles
             // 

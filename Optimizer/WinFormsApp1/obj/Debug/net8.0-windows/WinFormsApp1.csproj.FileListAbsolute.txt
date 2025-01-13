@@ -20,3 +20,6 @@ C:\Users\Thales\source\repos\Optimizer\WinFormsApp1\obj\Debug\net8.0-windows\Win
 C:\Users\Thales\source\repos\Optimizer\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.Ping.resources
 C:\Users\Thales\source\repos\Optimizer\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.Home.resources
 C:\Users\Thales\source\repos\Optimizer\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.More.resources
+C:\Users\Thales\source\repos\Optimizer\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.ErrorMessage.resources
+C:\Users\Thales\source\repos\Optimizer\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.SucefullForm.resources
+C:\Users\Thales\source\repos\Optimizer\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.SelectOptions.resources

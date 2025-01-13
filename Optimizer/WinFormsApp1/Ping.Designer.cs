@@ -44,6 +44,7 @@
             rbtNo = new RadioButton();
             label5 = new Label();
             button1 = new Button();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)trkPing).BeginInit();
             ((System.ComponentModel.ISupportInitialize)trkMtu).BeginInit();
             SuspendLayout();
@@ -75,7 +76,7 @@
             btnApplyPing.FlatStyle = FlatStyle.Flat;
             btnApplyPing.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold);
             btnApplyPing.ForeColor = Color.White;
-            btnApplyPing.Location = new Point(284, 293);
+            btnApplyPing.Location = new Point(281, 287);
             btnApplyPing.Name = "btnApplyPing";
             btnApplyPing.Size = new Size(220, 55);
             btnApplyPing.TabIndex = 18;
@@ -221,7 +222,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(21, 248);
+            label5.Location = new Point(24, 261);
             label5.Name = "label5";
             label5.Size = new Size(89, 23);
             label5.TabIndex = 36;
@@ -232,12 +233,24 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(24, 293);
+            button1.Location = new Point(24, 287);
             button1.Name = "button1";
-            button1.Size = new Size(171, 55);
+            button1.Size = new Size(143, 49);
             button1.TabIndex = 37;
             button1.Text = "Search DNS";
             button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold);
+            button2.ForeColor = Color.White;
+            button2.Location = new Point(24, 342);
+            button2.Name = "button2";
+            button2.Size = new Size(143, 49);
+            button2.TabIndex = 38;
+            button2.Text = "Flush DNS";
+            button2.UseVisualStyleBackColor = true;
             // 
             // Ping
             // 
@@ -245,6 +258,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(60, 60, 60);
             ClientSize = new Size(600, 420);
+            Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(label5);
             Controls.Add(rbtNo);
@@ -291,5 +305,6 @@
         private RadioButton rbtNo;
         private Label label5;
         private Button button1;
+        private Button button2;
     }
 }
