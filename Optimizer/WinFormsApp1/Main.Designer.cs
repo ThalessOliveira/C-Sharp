@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             panelside = new Panel();
+            button1 = new Button();
             pictureBox1 = new PictureBox();
             btnOther = new Button();
             btnPing = new Button();
@@ -40,7 +41,6 @@
             button5 = new Button();
             button4 = new Button();
             mainpanel = new Panel();
-            button1 = new Button();
             panelside.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelheader.SuspendLayout();
@@ -59,6 +59,20 @@
             panelside.Name = "panelside";
             panelside.Size = new Size(200, 420);
             panelside.TabIndex = 0;
+            // 
+            // button1
+            // 
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(137, 384);
+            button1.Name = "button1";
+            button1.Size = new Size(63, 36);
+            button1.TabIndex = 4;
+            button1.Text = "More";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // pictureBox1
             // 
@@ -189,20 +203,6 @@
             mainpanel.Name = "mainpanel";
             mainpanel.Size = new Size(600, 420);
             mainpanel.TabIndex = 2;
-            // 
-            // button1
-            // 
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(137, 384);
-            button1.Name = "button1";
-            button1.Size = new Size(63, 36);
-            button1.TabIndex = 4;
-            button1.Text = "More";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
             // 
             // Main
             // 

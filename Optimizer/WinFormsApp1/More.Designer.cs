@@ -110,9 +110,9 @@
             label7.ForeColor = Color.White;
             label7.Location = new Point(44, 318);
             label7.Name = "label7";
-            label7.Size = new Size(292, 23);
+            label7.Size = new Size(281, 23);
             label7.TabIndex = 11;
-            label7.Text = "https://discord.gg/ZWWHVYaB";
+            label7.Text = "https://discord.gg/xuwBjsFfwj";
             // 
             // More
             // 

@@ -32,6 +32,7 @@
             label3 = new Label();
             label1 = new Label();
             pictureBox1 = new PictureBox();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -53,9 +54,9 @@
             label1.ForeColor = Color.White;
             label1.Location = new Point(74, 123);
             label1.Name = "label1";
-            label1.Size = new Size(292, 23);
+            label1.Size = new Size(281, 23);
             label1.TabIndex = 6;
-            label1.Text = "https://discord.gg/ZWWHVYaB";
+            label1.Text = "https://discord.gg/xuwBjsFfwj";
             // 
             // pictureBox1
             // 
@@ -67,12 +68,24 @@
             pictureBox1.TabIndex = 7;
             pictureBox1.TabStop = false;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Century Gothic", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(498, 396);
+            label2.Name = "label2";
+            label2.Size = new Size(90, 15);
+            label2.TabIndex = 8;
+            label2.Text = "Made by PRIEST";
+            // 
             // Home
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(60, 60, 60);
             ClientSize = new Size(600, 420);
+            Controls.Add(label2);
             Controls.Add(pictureBox1);
             Controls.Add(label1);
             Controls.Add(label3);
@@ -90,5 +103,6 @@
         private Label label3;
         private Label label1;
         private PictureBox pictureBox1;
+        private Label label2;
     }
 }
