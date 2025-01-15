@@ -34,7 +34,7 @@
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
-            label7 = new Label();
+            textBox1 = new TextBox();
             SuspendLayout();
             // 
             // label3
@@ -103,16 +103,20 @@
             label6.TabIndex = 10;
             label6.Text = "Join on Discord for more:";
             // 
-            // label7
+            // textBox1
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold);
-            label7.ForeColor = Color.White;
-            label7.Location = new Point(44, 318);
-            label7.Name = "label7";
-            label7.Size = new Size(281, 23);
-            label7.TabIndex = 11;
-            label7.Text = "https://discord.gg/xuwBjsFfwj";
+            textBox1.BackColor = Color.FromArgb(60, 60, 60);
+            textBox1.BorderStyle = BorderStyle.None;
+            textBox1.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold);
+            textBox1.ForeColor = Color.White;
+            textBox1.Location = new Point(44, 310);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.PlaceholderText = "https://discord.gg/xuwBjsFfwj";
+            textBox1.ReadOnly = true;
+            textBox1.Size = new Size(281, 31);
+            textBox1.TabIndex = 11;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // More
             // 
@@ -120,7 +124,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(60, 60, 60);
             ClientSize = new Size(600, 420);
-            Controls.Add(label7);
+            Controls.Add(textBox1);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -142,6 +146,6 @@
         private Label label4;
         private Label label5;
         private Label label6;
-        private Label label7;
+        private TextBox textBox1;
     }
 }

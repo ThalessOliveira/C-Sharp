@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace WinFormsApp1
 {
-    public partial class More : Form
+    public partial class LoadingForm : Form
     {
-        public More()
+        public LoadingForm()
         {
             InitializeComponent();
-            textBox1.Text = "https://discord.gg/xuwBjsFfwj";
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

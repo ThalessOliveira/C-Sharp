@@ -1,6 +1,6 @@
 ﻿namespace WinFormsApp1
 {
-    partial class Other
+    partial class LoadingForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,51 +28,49 @@
         /// </summary>
         private void InitializeComponent()
         {
+            progressBarLoading = new ProgressBar();
             label3 = new Label();
-            label1 = new Label();
             SuspendLayout();
+            // 
+            // progressBarLoading
+            // 
+            progressBarLoading.Location = new Point(12, 54);
+            progressBarLoading.Name = "progressBarLoading";
+            progressBarLoading.Size = new Size(276, 23);
+            progressBarLoading.Style = ProgressBarStyle.Marquee;
+            progressBarLoading.TabIndex = 0;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Century Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(65, 62);
+            label3.Location = new Point(106, 28);
             label3.Name = "label3";
-            label3.Size = new Size(255, 32);
-            label3.TabIndex = 4;
-            label3.Text = "BeeBoost Premium";
+            label3.Size = new Size(100, 23);
+            label3.TabIndex = 16;
+            label3.Text = "Loading...";
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Century Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(65, 124);
-            label1.Name = "label1";
-            label1.Size = new Size(211, 32);
-            label1.TabIndex = 7;
-            label1.Text = "Coming soon...";
-            // 
-            // Other
+            // LoadingForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(60, 60, 60);
-            ClientSize = new Size(600, 420);
-            Controls.Add(label1);
+            BackColor = Color.FromArgb(20, 20, 20);
+            ClientSize = new Size(300, 100);
             Controls.Add(label3);
+            Controls.Add(progressBarLoading);
+            ForeColor = Color.White;
             FormBorderStyle = FormBorderStyle.None;
-            Name = "Other";
+            Name = "LoadingForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Other";
+            Text = "LoadingForm";
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
+        private ProgressBar progressBarLoading;
         private Label label3;
-        private Label label1;
     }
 }

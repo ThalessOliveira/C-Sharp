@@ -94,7 +94,7 @@
             btnOther.Name = "btnOther";
             btnOther.Size = new Size(200, 60);
             btnOther.TabIndex = 2;
-            btnOther.Text = "Game";
+            btnOther.Text = "Premium Options";
             btnOther.UseVisualStyleBackColor = true;
             btnOther.Click += btnOther_Click;
             // 
@@ -146,9 +146,9 @@
             label1.ForeColor = Color.White;
             label1.Location = new Point(36, 4);
             label1.Name = "label1";
-            label1.Size = new Size(211, 23);
+            label1.Size = new Size(256, 23);
             label1.TabIndex = 7;
-            label1.Text = "BeeBoost FREE Version";
+            label1.Text = "BeeBoost Standard Version";
             // 
             // btnHome
             // 

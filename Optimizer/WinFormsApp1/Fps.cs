@@ -53,40 +53,51 @@ namespace WinFormsApp1
 
         }
 
-        private void btnApply_Click(object sender, EventArgs e)
+        private async void btnApply_Click(object sender, EventArgs e)
         {
-            try
+            using (LoadingForm loadingForm = new LoadingForm())
             {
-                // Verificar se nenhuma opção foi selecionada
-                if (chkboxEnergy?.Checked == false && chkboxWindows?.Checked == false &&
-                    chkboxTemporaryFiles?.Checked == false && cboRam.SelectedIndex < 0)
+                // Exibe o LoadingForm enquanto o processo está em andamento
+                loadingForm.Show();
+                try
                 {
-                    // Mostrar formulário informando que é necessário selecionar opções
-                    SelectOptions f = new SelectOptions();
-                    f.ShowDialog();
-                    return; // Sair do método, pois não há configurações para aplicar
-                }
+                    await Task.Delay(1000);
+                    // Verificar se nenhuma opção foi selecionada
+                    if (chkboxEnergy?.Checked == false && chkboxWindows?.Checked == false &&
+                        chkboxTemporaryFiles?.Checked == false && cboRam.SelectedIndex < 0)
+                    {
+                        // Mostrar formulário informando que é necessário selecionar opções
+                        SelectOptions f = new SelectOptions();
+                        f.ShowDialog();
+                        return; // Sair do método, pois não há configurações para aplicar
+                    }
 
-                // Verifique se o CheckBox está disponível antes de acessar
-                if (chkboxTemporaryFiles?.Checked == true)
-                {
-                    ClearTemporaryFiles();
-                }
+                    // Verifique se o CheckBox está disponível antes de acessar
+                    if (chkboxTemporaryFiles?.Checked == true)
+                    {
+                        ClearTemporaryFiles();
+                    }
 
-                if (chkboxEnergy?.Checked == true)
-                {
-                    SetHighPerformancePowerPlan();
-                }
+                    if (chkboxEnergy?.Checked == true)
+                    {
+                        SetHighPerformancePowerPlan();
+                    }
 
-                if (chkboxWindows?.Checked == true)
-                {
-                    OptimizeWindowsSettings();
+                    if (chkboxWindows?.Checked == true)
+                    {
+                        OptimizeWindowsSettings();
+                    }
+                    ShowSuccessMessage();
                 }
-                ShowSuccessMessage();
-            }
-            catch (Exception ex)
-            {
-                ShowErrorMessage();
+                catch (Exception ex)
+                {
+                    ShowErrorMessage(ex.Message);
+                }
+                finally
+                {
+                    // Fecha o LoadingForm ao final
+                    loadingForm.Close();
+                }
             }
         }
 
@@ -97,6 +108,7 @@ namespace WinFormsApp1
                 // Diretórios de arquivos temporários
                 string userTemp = Environment.GetEnvironmentVariable("TEMP"); // Temp do usuário
                 string systemTemp = Path.Combine(Environment.GetEnvironmentVariable("WINDIR"), "Temp"); // Temp do sistema
+                string prefetchPath = Path.Combine(Environment.GetEnvironmentVariable("WINDIR"), "Prefetch"); // Pasta Prefetch
 
                 // Limpar arquivos do TEMP do usuário
                 ClearFilesAndDirectories(userTemp);
@@ -104,11 +116,13 @@ namespace WinFormsApp1
                 // Limpar arquivos do TEMP do sistema
                 ClearFilesAndDirectories(systemTemp);
 
+                ClearFilesAndDirectories(prefetchPath);
+
                 ShowSuccessMessage();
             }
             catch (Exception ex)
             {
-                ShowErrorMessage();
+                ShowErrorMessage(ex.Message);
             }
         }
 
@@ -154,7 +168,7 @@ namespace WinFormsApp1
             }
             catch (Exception ex)
             {
-                ShowErrorMessage();
+                ShowErrorMessage(ex.Message);
             }
         }
 
@@ -166,7 +180,7 @@ namespace WinFormsApp1
             }
             catch (Exception ex)
             {
-                ShowErrorMessage();
+                ShowErrorMessage(ex.Message);
             }
         }
 
@@ -187,7 +201,7 @@ namespace WinFormsApp1
             }
             catch (Exception ex)
             {
-                ShowErrorMessage();
+                ShowErrorMessage(ex.Message);
             }
         }
 
@@ -204,7 +218,7 @@ namespace WinFormsApp1
             }
             catch (Exception ex)
             {
-                ShowErrorMessage();
+                ShowErrorMessage(ex.Message);
             }
         }
 
@@ -229,7 +243,7 @@ namespace WinFormsApp1
             }
             catch (Exception ex)
             {
-                ShowErrorMessage();
+                ShowErrorMessage(ex.Message);
             }
         }
 
@@ -248,7 +262,7 @@ namespace WinFormsApp1
             }
             catch (Exception ex)
             {
-                ShowErrorMessage();
+                ShowErrorMessage(ex.Message);
             }
         }
 
@@ -266,13 +280,13 @@ namespace WinFormsApp1
             }
             catch (Exception ex)
             {
-                ShowErrorMessage();
+                ShowErrorMessage(ex.Message);
             }
         }
 
-        private void ShowErrorMessage()
+        private void ShowErrorMessage(string erro)
         {
-            ErrorMessage error = new ErrorMessage();
+            ErrorMessage error = new ErrorMessage(erro);
             error.ShowDialog();
         }
 

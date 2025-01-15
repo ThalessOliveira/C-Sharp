@@ -15,6 +15,11 @@ namespace WinFormsApp1
         public Home()
         {
             InitializeComponent();
+            textBox1.Text = "https://discord.gg/xuwBjsFfwj";
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
         }
     }
 }
