@@ -5,6 +5,7 @@ namespace WinFormsApp1
         public Main()
         {
             InitializeComponent();
+            this.Text = "Optimizer";
             loadForm(new Home());
         }
 

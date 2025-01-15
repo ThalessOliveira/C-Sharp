@@ -214,6 +214,7 @@
             Controls.Add(panelside);
             Controls.Add(panelheader);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Main";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
