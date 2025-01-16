@@ -12,9 +12,10 @@ namespace WinFormsApp1
 {
     public partial class SucefullForm : Form
     {
-        public SucefullForm()
+        public SucefullForm(string SucefullMessage)
         {
             InitializeComponent();
+            txtSucefullMessage.Text = SucefullMessage;
         }
 
         private void button1_Click(object sender, EventArgs e)

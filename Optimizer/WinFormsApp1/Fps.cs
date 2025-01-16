@@ -8,36 +8,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Management;
+
 
 namespace WinFormsApp1
 {
     public partial class Fps : Form
     {
+        bool sucess = false;
         public Fps()
         {
             InitializeComponent();
-        }
-
-        private void ConfigureComponents()
-        {
-            // Configurar o ComboBox de RAM
-            cboRam.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8+" });
-            cboRam.SelectedIndex = 3; // Selecionar "4 GB" como padrão
-
-            // Configurar o ComboBox de Windows
-            cboWindows.Items.Add("Windows 10");
-            cboWindows.SelectedIndex = 0; // Selecionar Windows 10 como padrão
-
-            // Adicionar evento ao botão de aplicar
-            btnApply.Click += btnApply_Click;
-        }
-
-        private void cboRam_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cboRam.SelectedIndex >= 0)
-            {
-                label1.Text = string.Empty;
-            }
         }
 
         private void cboWindows_SelectedIndexChanged(object sender, EventArgs e)
@@ -48,13 +29,18 @@ namespace WinFormsApp1
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private async void btnApply_Click(object sender, EventArgs e)
         {
+
+            // Verificar se nenhuma opção foi selecionada
+            if (chkboxEnergy?.Checked == false && chkboxWindows?.Checked == false &&
+                chkboxTemporaryFiles?.Checked == false && string.IsNullOrWhiteSpace(txtRam.Text))
+            {
+                // Mostrar formulário informando que é necessário selecionar opções
+                ShowErrorMessage("SELECT OPTIONS!");
+                return; // Sair do método, pois não há configurações para aplicar
+            }
+
             using (LoadingForm loadingForm = new LoadingForm())
             {
                 // Exibe o LoadingForm enquanto o processo está em andamento
@@ -62,15 +48,6 @@ namespace WinFormsApp1
                 try
                 {
                     await Task.Delay(1000);
-                    // Verificar se nenhuma opção foi selecionada
-                    if (chkboxEnergy?.Checked == false && chkboxWindows?.Checked == false &&
-                        chkboxTemporaryFiles?.Checked == false && cboRam.SelectedIndex < 0)
-                    {
-                        // Mostrar formulário informando que é necessário selecionar opções
-                        SelectOptions f = new SelectOptions();
-                        f.ShowDialog();
-                        return; // Sair do método, pois não há configurações para aplicar
-                    }
 
                     // Verifique se o CheckBox está disponível antes de acessar
                     if (chkboxTemporaryFiles?.Checked == true)
@@ -87,7 +64,11 @@ namespace WinFormsApp1
                     {
                         OptimizeWindowsSettings();
                     }
-                    ShowSuccessMessage();
+                    // Configurar memória virtual se o campo txtRam estiver preenchido
+                    if (!string.IsNullOrWhiteSpace(txtRam.Text))
+                    {
+                        ConfigureVirtualMemory(txtRam.Text);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -97,6 +78,10 @@ namespace WinFormsApp1
                 {
                     // Fecha o LoadingForm ao final
                     loadingForm.Close();
+                }
+                if (sucess)
+                {
+                    ShowSuccessMessage("Success!");
                 }
             }
         }
@@ -118,7 +103,6 @@ namespace WinFormsApp1
 
                 ClearFilesAndDirectories(prefetchPath);
 
-                ShowSuccessMessage();
             }
             catch (Exception ex)
             {
@@ -197,7 +181,6 @@ namespace WinFormsApp1
                 // Ajustar o comportamento do sistema sem abrir a janela de configurações
                 ConfigureSystemBehavior();
 
-                ShowSuccessMessage();
             }
             catch (Exception ex)
             {
@@ -229,10 +212,10 @@ namespace WinFormsApp1
                 // Lista de serviços desnecessários para desabilitar
                 string[] servicesToDisable =
                 {
-            "DiagTrack", // Serviço de rastreamento de diagnóstico
-            "SysMain",   // Superfetch
-            "WSearch",   // Windows Search
-            "Spooler"    // Serviço de impressão (se não necessário)
+                "DiagTrack", // Serviço de rastreamento de diagnóstico
+                "SysMain",   // Superfetch
+                "WSearch",   // Windows Search
+                "Spooler"    // Serviço de impressão (se não necessário)
         };
 
                 foreach (string service in servicesToDisable)
@@ -271,16 +254,69 @@ namespace WinFormsApp1
         {
             try
             {
-                int ramSize = ramValue == "8+" ? 8 : int.Parse(ramValue);
-                int minSize = ramSize * 1024; // Tamanho mínimo em MB
-                int maxSize = ramSize * 1024 * 2; // Tamanho máximo em MB
+                // Verificar se o valor no txtRam é válido
+                if (!int.TryParse(ramValue, out int userRam))
+                {
+                    ShowErrorMessage("Invalid Value, please enter integers.");
+                    return;
+                }
 
-                string command = $"wmic pagefile set /? InitialSize={minSize} /MaxSize={maxSize}";
-                Process.Start("cmd.exe", "/c " + command);
+                // Obter a memória RAM instalada no dispositivo
+                int installedRam = GetInstalledRam();
+
+                // Comparar o valor inserido com a RAM instalada
+                if (userRam != installedRam)
+                {
+                    sucess = false;
+                    ShowErrorMessage("RAM does not match installed RAM.");
+                    return;
+                }
+                int minSize = installedRam * 1024; // Em MB
+                int maxSize = (int)(minSize * 1.5); // Em MB
+
+                if (installedRam * 1024 > 16 * 1024)
+                {
+                    minSize = 16 * 1024;
+                    maxSize = 20 * 1024;
+                }
+
+                string disableCommand = "wmic computersystem where name=\"%computername%\" set AutomaticManagedPagefile=False";
+                var disableProcess = Process.Start("cmd.exe", "/c " + disableCommand);
+                disableProcess.WaitForExit();
+
+                // Configurar memória virtual
+                string configureCommand = $"wmic pagefileset where name=\"C:\\\\pagefile.sys\" set InitialSize={minSize},MaximumSize={maxSize}";
+                var configureProcess = Process.Start("cmd.exe", "/c " + configureCommand);
+                configureProcess.WaitForExit();
+
+                ShowSuccessMessage("Restart your PC to take effect");
             }
             catch (Exception ex)
             {
                 ShowErrorMessage(ex.Message);
+            }
+        }
+
+        private int GetInstalledRam()
+        {
+            try
+            {
+                // Usar o WMI para obter a RAM instalada
+                var searcher = new System.Management.ManagementObjectSearcher("SELECT Capacity FROM Win32_PhysicalMemory");
+                long totalCapacity = 0;
+
+                foreach (var obj in searcher.Get())
+                {
+                    totalCapacity += Convert.ToInt64(obj["Capacity"]);
+                }
+
+                // Converter bytes para GB
+                return (int)(totalCapacity / (1024 * 1024 * 1024));
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage(ex.Message);
+                return 0;
             }
         }
 
@@ -290,10 +326,18 @@ namespace WinFormsApp1
             error.ShowDialog();
         }
 
-        private void ShowSuccessMessage()
+        private void ShowSuccessMessage(string message)
         {
-            SucefullForm sucess = new SucefullForm();
+            SucefullForm sucess = new SucefullForm(message);
             sucess.ShowDialog();
+        }
+        private void txtRam_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir apenas números (dígitos) e a tecla de controle "Backspace"
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // Impede a entrada do caractere inválido
+            }
         }
     }
 }

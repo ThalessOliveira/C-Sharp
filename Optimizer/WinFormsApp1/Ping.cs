@@ -36,7 +36,7 @@ namespace WinFormsApp1
             trkMtu.Value = 1500;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e) //btnBestMtu
         {
             lblMtu.Text = 1450.ToString();
             trkMtu.Value = 1450;
@@ -44,6 +44,14 @@ namespace WinFormsApp1
 
         private async void btnApplyPing_Click(object sender, EventArgs e)
         {
+            // Verifica se uma conexão foi selecionada
+            if (cboConectionType.SelectedIndex == -1)
+            {
+                // Mostra a página para selecionar opções
+                ShowErrorMessage("SELECT OPTIONS!");
+                return;
+            }
+
             using (LoadingForm loadingForm = new LoadingForm())
             {
                 // Exibe o LoadingForm enquanto o processo está em andamento
@@ -52,50 +60,37 @@ namespace WinFormsApp1
                 try
                 {
                     await Task.Delay(1000);
-                    // Verifica se uma conexão foi selecionada
-                    if (cboConectionType.SelectedIndex == -1)
-                    {
-                        // Mostra a página para selecionar opções
-                        SelectOptions selectOptionsForm = new SelectOptions();
-                        selectOptionsForm.ShowDialog();
-                        return;
-                    }
 
                     // Obtém os valores selecionados
                     string connectionType = cboConectionType.SelectedItem.ToString();
-                    int mtuValue = trkMtu.Value;
+                    int mtuValue = trkMtu.Value; //armazena numa variável o valor do trkMtu
 
                     // Valida o MTU
                     if (mtuValue < 576 || mtuValue > 1500)
                     {
                         // Mostra a página de erro
-                        ErrorMessage errorMessageForm = new ErrorMessage("Valor de MTU inválido");
-                        errorMessageForm.ShowDialog();
+                        ShowErrorMessage("Invalid MTU value");
                         return;
                     }
 
-                    // Chama o método assíncrono para aplicar a configuração de MTU
+                    // Chama o método async para aplicar a configuração de MTU
                     bool configurationApplied = await Task.Run(() => ApplyMtuConfiguration(connectionType, mtuValue));
 
                     if (configurationApplied)
                     {
                         // Mostra a página de sucesso
-                        SucefullForm successForm = new SucefullForm();
-                        successForm.ShowDialog();
+                        ShowSuccessMessage("Applied MTU Settings");
                     }
                     else
                     {
                         // Mostra a página de erro em caso de falha
-                        ErrorMessage errorMessageForm = new ErrorMessage("Erro ao aplicar a configuração. Verifique o tipo de conexão.");
-                        errorMessageForm.ShowDialog();
+                        ShowErrorMessage("Error applying configuration. Check the connection type.");
                     }
                 }
                 catch (Exception ex)
                 {
                     // Exibe um erro genérico se algo der errado
-                    ErrorMessage errorMessageForm = new ErrorMessage($"Erro inesperado: {ex.Message}");
-                    errorMessageForm.ShowDialog();
-                    Console.WriteLine($"Erro ao aplicar configuração de MTU: {ex.Message}");
+                    ShowErrorMessage($"Unexpected error: {ex.Message}");
                 }
                 finally
                 {
@@ -133,54 +128,45 @@ namespace WinFormsApp1
 
                 if (process.ExitCode == 0)
                 {
-                    Console.WriteLine($"Comando executado com sucesso: {output}");
                     return true;
                 }
                 else
                 {
-                    Console.WriteLine($"Erro ao executar o comando: {error}");
+                    ShowErrorMessage($"Unexpected error, exit code: {process.ExitCode}");
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao aplicar configuração de MTU: {ex.Message}");
+                ShowErrorMessage($"Unexpected error: {ex.Message}");
                 return false;
             }
         }
 
         private async void btnFlushDns_Click(object sender, EventArgs e)
         {
-
             using (LoadingForm loadingForm = new LoadingForm())
             {
                 loadingForm.Show();
 
                 try
                 {
-                    await Task.Delay(1000);
-                    await Task.Run(() =>
+                    await Task.Delay(1000); //vai esperar 1000ms
+                    await Task.Run(() =>    //executar a task
                     {
-                        // Simula uma tarefa demorada (substitua pela sua lógica real)
-                        System.Threading.Thread.Sleep(1000);
                         ExecuteCommand("ipconfig /flushdns");
                         ExecuteCommand("ipconfig /release");
                         ExecuteCommand("ipconfig /renew");
                     });
 
-                    // Exibe mensagem de sucesso ao usuário
-                    SucefullForm f = new SucefullForm();
-                    f.ShowDialog();
+                    ShowSuccessMessage("DNS flushed");
                 }
                 catch (Exception ex)
                 {
-                    // Exibe mensagem de erro ao usuário
-                    ErrorMessage f = new ErrorMessage(ex.Message);
-                    f.ShowDialog();
+                    ShowErrorMessage(ex.Message);
                 }
                 finally
                 {
-                    // Fecha o LoadingForm automaticamente
                     loadingForm.Close();
                 }
             }
@@ -205,17 +191,15 @@ namespace WinFormsApp1
             string error = process.StandardError.ReadToEnd();
             process.WaitForExit();
 
-            // Exibe mensagens no console para depuração (opcional)
-            Console.WriteLine($"Saída do comando: {output}");
             if (!string.IsNullOrEmpty(error))
             {
-                Console.WriteLine($"Erro do comando: {error}");
+                ShowErrorMessage(error);
             }
 
             // Verifica o código de saída para identificar falhas
             if (process.ExitCode != 0)
             {
-                throw new Exception($"Erro ao executar o comando '{command}'. Código de saída: {process.ExitCode}");
+                throw new Exception($"Error executing command  '{command}'. Exit code: {process.ExitCode}");
             }
         }
 
@@ -251,14 +235,13 @@ namespace WinFormsApp1
                                 }
                                 else
                                 {
-                                    dnsSummary.AppendLine($"Interface: {interfaceName} Não disponível ou desativada.");
+                                    dnsSummary.AppendLine($"Interface: {interfaceName} Not available or disabled.");
                                 }
                             }
                             catch (Exception ex)
                             {
                                 // Erro específico para cada interface
-                                dnsSummary.AppendLine($"Erro na interface {interfaceName}: {ex.Message}");
-                                Console.WriteLine($"Erro ao configurar DNS para a interface '{interfaceName}': {ex.Message}");
+                                dnsSummary.AppendLine($"Interface error {interfaceName}: {ex.Message}");
                             }
                         }
                     });
@@ -269,20 +252,17 @@ namespace WinFormsApp1
                     // Exibe mensagem apropriada com base no sucesso
                     if (success)
                     {
-                        SucefullForm successForm = new SucefullForm();
-                        successForm.ShowDialog();
+                        ShowSuccessMessage("Best DNS Applied");
                     }
                     else
                     {
-                        throw new Exception("Não foi possível configurar DNS para nenhuma interface. Verifique as configurações de rede.");
+                        throw new Exception("Unable to configure DNS for any interface. Check your network settings.");
                     }
                 }
                 catch (Exception ex)
                 {
                     // Exibe a mensagem de erro em um formulário de erro
-                    ErrorMessage errorForm = new ErrorMessage(ex.Message);
-                    errorForm.ShowDialog();
-                    Console.WriteLine($"Erro geral ao configurar DNS: {ex.Message}");
+                    ShowErrorMessage(ex.Message);
                 }
                 finally
                 {
@@ -314,7 +294,6 @@ namespace WinFormsApp1
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao verificar interface '{interfaceName}': {ex.Message}");
                 return false;
             }
         }
@@ -326,22 +305,31 @@ namespace WinFormsApp1
                 // Valida se a interface está disponível
                 if (!IsInterfaceAvailable(interfaceName))
                 {
-                    throw new Exception($"A interface '{interfaceName}' não foi encontrada ou está desativada.");
+                    throw new Exception($"Interface '{interfaceName}' not found or disabled.");
                 }
 
                 // Configura o DNS preferencial (primário)
                 ExecuteCommand($"netsh interface ip set dns \"{interfaceName}\" static {primaryDns}");
-                Console.WriteLine($"DNS preferencial configurado para '{interfaceName}': {primaryDns}");
 
                 // Configura o DNS alternativo (secundário)
                 ExecuteCommand($"netsh interface ip add dns \"{interfaceName}\" {secondaryDns} index=2");
-                Console.WriteLine($"DNS alternativo configurado para '{interfaceName}': {secondaryDns}");
             }
             catch (Exception ex)
             {
-                throw new Exception($"Falha ao configurar DNS para a interface '{interfaceName}': {ex.Message}");
+                throw new Exception($"Failed to configure DNS for the interface '{interfaceName}': {ex.Message}");
             }
         }
 
+        private void ShowSuccessMessage(string message)
+        {
+            SucefullForm sucess = new SucefullForm(message);
+            sucess.ShowDialog();
+        }
+
+        private void ShowErrorMessage(string erro)
+        {
+            ErrorMessage error = new ErrorMessage(erro);
+            error.ShowDialog();
+        }
     }
 }

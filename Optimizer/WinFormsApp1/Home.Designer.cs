@@ -45,7 +45,7 @@
             label3.Name = "label3";
             label3.Size = new Size(160, 23);
             label3.TabIndex = 5;
-            label3.Text = "BeeBoost V.1.0.0";
+            label3.Text = "BeeBoost V.1.0.1";
             // 
             // pictureBox1
             // 

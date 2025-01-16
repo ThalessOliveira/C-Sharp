@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             label3 = new Label();
-            cboRam = new ComboBox();
             cboWindows = new ComboBox();
             btnApply = new Button();
             chkboxTemporaryFiles = new CheckBox();
@@ -37,6 +36,7 @@
             chkboxEnergy = new CheckBox();
             label1 = new Label();
             label2 = new Label();
+            txtRam = new TextBox();
             SuspendLayout();
             // 
             // label3
@@ -49,19 +49,6 @@
             label3.Size = new Size(164, 23);
             label3.TabIndex = 3;
             label3.Text = "FPS Optimization";
-            // 
-            // cboRam
-            // 
-            cboRam.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboRam.FlatStyle = FlatStyle.Flat;
-            cboRam.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold);
-            cboRam.FormattingEnabled = true;
-            cboRam.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8 or more..." });
-            cboRam.Location = new Point(23, 169);
-            cboRam.Name = "cboRam";
-            cboRam.Size = new Size(220, 31);
-            cboRam.TabIndex = 7;
-            cboRam.SelectedIndexChanged += cboRam_SelectedIndexChanged;
             // 
             // cboWindows
             // 
@@ -150,12 +137,22 @@
             label2.TabIndex = 14;
             label2.Text = "Select your Windows";
             // 
+            // txtRam
+            // 
+            txtRam.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold);
+            txtRam.Location = new Point(12, 169);
+            txtRam.Name = "txtRam";
+            txtRam.Size = new Size(220, 31);
+            txtRam.TabIndex = 15;
+            txtRam.KeyPress += txtRam_KeyPress;
+            // 
             // Fps
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(60, 60, 60);
             ClientSize = new Size(600, 420);
+            Controls.Add(txtRam);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(chkboxEnergy);
@@ -163,7 +160,6 @@
             Controls.Add(chkboxTemporaryFiles);
             Controls.Add(btnApply);
             Controls.Add(cboWindows);
-            Controls.Add(cboRam);
             Controls.Add(label3);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Fps";
@@ -176,7 +172,6 @@
         #endregion
 
         private Label label3;
-        private ComboBox cboRam;
         private ComboBox cboWindows;
         private Button btnApply;
         private CheckBox chkboxTemporaryFiles;
@@ -184,5 +179,6 @@
         private CheckBox chkboxEnergy;
         private Label label1;
         private Label label2;
+        private TextBox txtRam;
     }
 }

@@ -35,6 +35,7 @@
             pictureBox1 = new PictureBox();
             textBox1 = new TextBox();
             label2 = new Label();
+            textBox2 = new TextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -67,8 +68,8 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(106, 33);
+            label1.ForeColor = Color.FromArgb(140, 48, 65);
+            label1.Location = new Point(106, 41);
             label1.Name = "label1";
             label1.Size = new Size(213, 23);
             label1.TabIndex = 1;
@@ -90,23 +91,37 @@
             textBox1.BorderStyle = BorderStyle.None;
             textBox1.Font = new Font("Century Gothic", 11F);
             textBox1.ForeColor = Color.White;
-            textBox1.Location = new Point(106, 89);
+            textBox1.Location = new Point(106, 67);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
+            textBox1.ReadOnly = true;
             textBox1.Size = new Size(282, 149);
             textBox1.TabIndex = 3;
-            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(106, 67);
+            label2.Location = new Point(0, 228);
             label2.Name = "label2";
-            label2.Size = new Size(135, 19);
+            label2.Size = new Size(102, 16);
             label2.TabIndex = 4;
             label2.Text = "Contact support:";
+            // 
+            // textBox2
+            // 
+            textBox2.BackColor = Color.FromArgb(20, 20, 20);
+            textBox2.BorderStyle = BorderStyle.None;
+            textBox2.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            textBox2.ForeColor = Color.White;
+            textBox2.Location = new Point(106, 228);
+            textBox2.Multiline = true;
+            textBox2.Name = "textBox2";
+            textBox2.PlaceholderText = "https://discord.gg/xuwBjsFfwj";
+            textBox2.ReadOnly = true;
+            textBox2.Size = new Size(178, 22);
+            textBox2.TabIndex = 10;
             // 
             // ErrorMessage
             // 
@@ -114,6 +129,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(20, 20, 20);
             ClientSize = new Size(400, 250);
+            Controls.Add(textBox2);
             Controls.Add(label2);
             Controls.Add(textBox1);
             Controls.Add(pictureBox1);
@@ -137,5 +153,6 @@
         private PictureBox pictureBox1;
         private TextBox textBox1;
         private Label label2;
+        private TextBox textBox2;
     }
 }

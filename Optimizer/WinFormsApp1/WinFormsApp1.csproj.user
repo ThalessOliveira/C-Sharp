@@ -28,9 +28,6 @@
     <Compile Update="Ping.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="SelectOptions.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="SucefullForm.cs">
       <SubType>Form</SubType>
     </Compile>
